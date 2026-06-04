@@ -390,6 +390,6 @@ Proyecto desarrollado en equipo como integrador universitario en la Universidad 
 | Saul Sanchez ([@SaulSantor](https://github.com/SaulSantor)) | App Móvil, IoT     |
 | David                                                       | Backend, IoT       |
 | Juan                                                        | Base de Datos, IoT |
-| Mauricio                                                    | Frontend Web, IoT  |
+| Mauricio ([@Mauriprdz](https://github.com/Mauriprdz))       | Frontend Web, IoT  |
 
 **¡Listo!** 🎉 Tu aplicación Serenity está corriendo.
