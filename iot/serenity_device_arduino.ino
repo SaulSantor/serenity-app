@@ -31,14 +31,14 @@
 #include <DHT.h>
 
 // === CONFIGURACIÓN WIFI ===
-const char* ssid = "Totalplay-22A3";           // ← CAMBIAR: Nombre de tu red WiFi
-const char* password = "22A3D5328nvJdxAx";  // ← CAMBIAR: Contraseña WiFi
+const char* ssid = "TU_RED_WIFI";           // ← CAMBIAR: Nombre de tu red WiFi
+const char* password = "TU_PASSWORD_WIFI";  // ← CAMBIAR: Contraseña WiFi
 
 // === CONFIGURACIÓN BACKEND ===
-const char* backend_host = "192.168.100.69";  // ✅ IP de tu PC con el backend
+const char* backend_host = "192.168.X.X";  // ✅ IP de tu PC con el backend
 const int backend_port = 5000;
 const char* device_id = "ARDUINO_001";        // ID único del dispositivo
-const char* user_id = "6924729c100ab1e57c770641";  // ✅ Tu user_id de MongoDB
+const char* user_id = "TU_USER_ID_MONGODB";  // ✅ Tu user_id de MongoDB
 
 // === PINES ===
 #define TOUCH_PIN_1  2   // Botón táctil 1
