@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yoga Nidra • Serenity</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/meditaciones.css">
+  <link rel="stylesheet" href="../css/meditacion-yoga-nidra.css">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0f1220">
+  <meta name="description" content="Yoga Nidra guiado de 15 minutos para relajación profunda.">
+  <link rel="icon" href="../assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+</head>
+
+<body>
+  <div class="container">
+    <div class="top">
+      <a class="back" href="../dashboard.html#meditaciones"><i class="ri-arrow-left-line"></i> Volver a Meditaciones</a>
+      <span style="color:var(--muted); font-size:13px">Audio guiado</span>
+    </div>
+
+    <section class="hero">
+      <div>
+        <h1>Yoga Nidra</h1>
+        <p style="margin:0 0 10px; color:var(--muted)">Relajación profunda consciente. Ideal antes de dormir o para
+          restaurar energía.</p>
+        <div class="meta">
+          <span><i class="ri-time-line"></i> 15 min</span>
+          <span><i class="ri-moon-line"></i> Sueño</span>
+          <span><i class="ri-focus-3-line"></i> Relajación profunda</span>
+        </div>
+        <div class="footer-note">Consejo: usa audífonos y una postura cómoda; puedes hacerlo acostado.</div>
+      </div>
+      <div class="panel">
+        <div class="timer">
+          <div class="time" id="time">15:00</div>
+          <div class="controls">
+            <button class="btn btn-primary" id="start"><i class="ri-play-fill"></i> Iniciar</button>
+            <button class="btn btn-ghost" id="pause"><i class="ri-pause-line"></i> Pausa</button>
+            <button class="btn btn-ghost" id="reset"><i class="ri-restart-line"></i> Reiniciar</button>
+          </div>
+        </div>
+        <div class="progress" style="margin-top:12px">
+          <div class="bar" id="bar"></div>
+        </div>
+        <div class="log"
+          style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; color:var(--muted)">
+          <span>Intensidad antes</span>
+          <input id="preYN" type="number" min="0" max="10" value="6"
+            style="width:64px; padding:8px; border-radius:8px; background:transparent; border:1px solid var(--border); color:var(--text)">
+          <span>después</span>
+          <input id="postYN" type="number" min="0" max="10" value="3"
+            style="width:64px; padding:8px; border-radius:8px; background:transparent; border:1px solid var(--border); color:var(--text)">
+          <button class="btn btn-ghost" id="saveYN"><i class="ri-save-3-line"></i> Guardar práctica</button>
+        </div>
+        <div id="recentYN" class="footer-note" style="margin-top:8px"></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h3 style="margin:0 0 10px">Fases guiadas</h3>
+        <div class="steps" id="steps"></div>
+      </div>
+      <div class="panel">
+        <h3 style="margin:0 0 10px">Instrucciones</h3>
+        <div id="instruction" style="color:var(--muted); line-height:1.6"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="../js/dashboard-api-utils.js"></script>
+  <script src="../js/meditacion-yoga-nidra.js"></script>
+</body>
+
+</html>

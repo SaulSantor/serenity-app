@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Breathing - Respiración de Caja | Serenity</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/meditaciones.css">
+    <link rel="stylesheet" href="../css/meditacion-box-breathing.css">
+</head>
+
+<body>
+    <div class="breathing-container">
+        <a href="../dashboard.html#meditaciones" class="back-button">
+            <i class="ri-arrow-left-line"></i> Volver a Meditaciones
+        </a>
+
+        <div class="breathing-header">
+            <span class="technique-tag">
+                <i class="ri-square-line"></i> Técnica Navy SEALs
+            </span>
+            <h1>Box Breathing</h1>
+            <p class="subtitle" style="font-size: 1.2rem; color: var(--text-secondary);">
+                Respiración de caja para máxima concentración y calma
+            </p>
+        </div>
+
+        <div class="main-panel">
+            <div class="box-container">
+                <div class="breathing-box" id="breathingBox">
+                    <div class="box-corner corner-1" id="corner1"></div>
+                    <div class="box-corner corner-2" id="corner2"></div>
+                    <div class="box-corner corner-3" id="corner3"></div>
+                    <div class="box-corner corner-4" id="corner4"></div>
+
+                    <div class="breathing-circle" id="breathingCircle">
+                        <div>
+                            <div class="breathing-text" id="breathingText">Prepárate</div>
+                            <div class="counter" id="counter">4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase-indicator">
+                <div class="phase-title" id="phaseTitle">Presiona "Comenzar" para iniciar</div>
+                <div class="phase-counter" id="phaseCounter">Ciclo 0 de 5</div>
+            </div>
+
+            <div class="stats-panel">
+                <div class="stat-box">
+                    <div class="stat-value" id="totalCycles">0</div>
+                    <div class="stat-label">Ciclos completados</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="totalTime">0:00</div>
+                    <div class="stat-label">Tiempo total</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="breathsPerMinute">--</div>
+                    <div class="stat-label">Respiraciones/min</div>
+                </div>
+            </div>
+
+            <div class="control-buttons">
+                <button class="control-btn" onclick="resetBreathing()">
+                    <i class="ri-restart-line"></i> Reiniciar
+                </button>
+                <button class="control-btn primary" id="startBtn" onclick="startBreathing()">
+                    <i class="ri-play-fill"></i> Comenzar
+                </button>
+                <button class="control-btn" id="pauseBtn" onclick="pauseBreathing()" style="display: none;">
+                    <i class="ri-pause-line"></i> Pausar
+                </button>
+            </div>
+        </div>
+
+        <div class="benefits-section">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">
+                ¿Por qué Box Breathing es tan efectiva?
+            </h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-shield-line"></i>
+                    </div>
+                    <h3>Usada por Navy SEALs</h3>
+                    <p>Desarrollada por militares de élite para mantener la calma en situaciones de alto estrés y
+                        peligro.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-focus-line"></i>
+                    </div>
+                    <h3>Mejora concentración</h3>
+                    <p>El patrón simétrico de 4 segundos entrena tu atención y mejora tu capacidad de enfoque.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-heart-pulse-line"></i>
+                    </div>
+                    <h3>Equilibra el sistema nervioso</h3>
+                    <p>Activa el nervio vago, equilibrando los sistemas simpático y parasimpático.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-time-line"></i>
+                    </div>
+                    <h3>Rápida y efectiva</h3>
+                    <p>Solo 3 minutos de práctica pueden reducir significativamente la ansiedad aguda.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-bar-chart-line"></i>
+                    </div>
+                    <h3>Respaldo científico</h3>
+                    <p>91% de efectividad según estudios. Reduce cortisol y presión arterial rápidamente.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-smartphone-line"></i>
+                    </div>
+                    <h3>Úsala en cualquier lugar</h3>
+                    <p>Antes de presentaciones, exámenes, reuniones difíciles o momentos de alta presión.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/dashboard-api-utils.js"></script>
+    <script src="../js/meditacion-box-breathing.js"></script>
+</body>
+
+</html>

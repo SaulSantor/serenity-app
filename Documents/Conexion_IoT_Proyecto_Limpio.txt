@@ -1,0 +1,320 @@
+Conexión del Proyecto con Dispositivo IoT
+
+Proyecto: Serenity Aplicación de Bienestar Mental  
+Dispositivo IoT: Arduino Nano 33 IoT con Sensores Antiestrés  
+Fecha: Diciembre 2025
+
+
+1. Descripción General del Sistema
+
+El proyecto Serenity integra un dispositivo IoT basado en Arduino Nano 33 IoT que funciona como un monitor de estrés en tiempo real. El dispositivo captura datos de sensores físicos y los envía a través de WiFi al backend de la aplicación.
+
+Componentes del Sistema IoT:
+
+Arduino Nano 33 IoT (SAMD21 ARM Cortex M0+, WiFiNINA)
+5 Sensores Táctiles Capacitivos (TTP223) Detectan frecuencia de interacción
+Sensor de Temperatura y Humedad (DHT11) Mide condiciones ambientales
+Sensor de Presión (MPX5010DP) Detecta tensión muscular mediante agarre
+
+
+2. Arquitectura de Conexión
+
+[Arduino + Sensores] 
+        (WiFi)
+[Backend Flask Puerto 5000]
+        (HTTP POST cada 5s)
+[MongoDB Base de Datos]
+        (HTTP GET cada 3s)
+[App Mobile React Native]
+
+Flujo de Datos:
+
+1. Arduino lee sensores cada 5 segundos
+2. Envía JSON via HTTP POST a http://192.168.100.69:5000/api/iot/sensors/data
+3. Backend procesa y guarda en MongoDB (colección iot_sensor_data)
+4. App móvil consulta via HTTP GET a /api/iot/sensors/latest/{user_id}
+5. Pantalla IoT Monitor muestra datos en tiempo real con polling de 3 segundos
+
+
+3. Configuración del Arduino
+
+3.1 Código Arduino (serenity_device_arduino.ino)
+
+CAPTURA 1: Abrir el archivo iot/serenity_device_arduino.ino en Arduino IDE o VS Code y capturar la sección donde se configuran:
+Credenciales WiFi (ssid y password)
+IP del backend (backend_host y backend_port)
+ID del usuario (user_id)
+ID del dispositivo (device_id)
+
+[INSERTAR CAPTURA 1 AQUÍ]
+
+
+3.2 Conexión de Sensores
+
+Pines Utilizados:
+
+Sensor                    Pin Arduino    Voltaje
+Touch Button 1            D2             3.3V
+Touch Button 2            D3             3.3V
+Touch Button 3            D4             3.3V
+Touch Button 4            D5             3.3V
+Touch Button 5            D6             3.3V
+DHT11 (Temp/Humedad)      D7             3.3V
+MPX5010DP (Presión)       A0             5V con divisor de voltaje
+
+CAPTURA 2: Tomar foto del Arduino Nano 33 IoT físicamente conectado mostrando:
+Los 5 sensores táctiles TTP223
+El sensor DHT11 de temperatura/humedad
+El sensor de presión MPX5010DP
+Las conexiones a los pines del Arduino
+
+[INSERTAR CAPTURA 2 AQUÍ]
+
+
+3.3 Datos Enviados por Arduino
+
+El Arduino envía datos en formato JSON cada 5 segundos al backend, incluyendo:
+Estados de los 5 sensores táctiles (true/false)
+Contador y frecuencia de toques
+Temperatura y humedad ambiente
+Presión de agarre y nivel de tensión
+
+CAPTURA 3: Abrir Arduino IDE, conectar el Arduino y capturar el Serial Monitor mostrando:
+Conexión exitosa a WiFi
+Datos JSON siendo enviados al backend
+Respuestas del servidor (código 201 o 200)
+Timestamps de envío
+
+[INSERTAR CAPTURA 3 AQUÍ]
+
+
+4. Backend Recepción de Datos
+
+4.1 Endpoint de Recepción
+
+Archivo: backend/routes/iot_routes.py
+
+El backend expone el endpoint /api/iot/sensors/data que:
+Recibe datos JSON del Arduino via POST
+Extrae device_id y user_id
+Calcula nivel de estrés automáticamente
+Guarda en MongoDB
+Retorna confirmación con stress_level
+
+CAPTURA 4: Ejecutar el backend y capturar la terminal PowerShell mostrando:
+Backend Flask corriendo en puerto 5000
+Logs de peticiones POST desde la IP del Arduino (192.168.100.86)
+Códigos de respuesta 201 (Created)
+Timestamp de cada petición recibida
+
+[INSERTAR CAPTURA 4 AQUÍ]
+
+
+4.2 Algoritmo de Detección de Estrés
+
+Archivo: backend/models/iot_sensor_model.py
+
+El backend calcula un nivel de estrés de 0 a 100 basándose en 3 factores:
+
+Factor 1: Frecuencia de Toques (40 puntos máximo)
+Mayor a 20 toques/min suma +40 puntos (ansiedad alta)
+Mayor a 10 toques/min suma +25 puntos (inquietud)
+Mayor a 3 toques/min suma +10 puntos (ligera ansiedad)
+
+Factor 2: Presión de Agarre (30 puntos máximo)
+Mayor a 6 kPa suma +30 puntos (tensión alta)
+Mayor a 4 kPa suma +15 puntos (tensión moderada)
+
+Factor 3: Condiciones Ambientales (30 puntos máximo)
+Temperatura fuera de 18 a 28°C suma +15 puntos
+Humedad fuera de 30 a 70% suma +15 puntos
+
+CAPTURA 5: Abrir el archivo backend/models/iot_sensor_model.py en VS Code y capturar la función _calculate_stress_level() mostrando:
+Los 3 factores de cálculo
+Los umbrales y puntuaciones
+La lógica de detección de estrés
+
+[INSERTAR CAPTURA 5 AQUÍ]
+
+
+5. Base de Datos MongoDB
+
+5.1 Colección iot_sensor_data
+
+Los datos del Arduino se guardan en MongoDB con la siguiente estructura:
+_id: ID único del documento
+device_id: Identificador del Arduino
+user_id: ID del usuario asociado
+timestamp: Fecha y hora de la lectura
+touch_sensors: Estados de los 5 botones, contador y frecuencia
+environment: Temperatura, humedad e índice de confort
+pressure: Valor en kPa, clasificación de agarre y detección de tensión
+stress_analysis: Nivel de estrés (0 a 100) y recomendación personalizada
+session_id: ID de sesión del dispositivo
+
+CAPTURA 6: Abrir MongoDB Compass, conectarse a la base de datos serenity_app y capturar:
+Colección iot_sensor_data con múltiples documentos
+Un documento completo expandido mostrando toda la estructura de datos
+Los valores de stress_level, touch_frequency, pressure, temperature, etc.
+
+[INSERTAR CAPTURA 6 AQUÍ]
+
+
+6. App Móvil Visualización en Tiempo Real
+
+6.1 Pantalla IoT Monitor
+
+Archivo: app_mobile/src/screens/IoTMonitorScreen.js
+
+Funcionalidad principal:
+Obtiene datos del usuario autenticado mediante AuthContext
+Consulta endpoint /api/iot/sensors/latest/{user_id} cada 3 segundos (polling automático)
+Muestra datos en tarjetas visuales con iconos
+Actualiza automáticamente sin recargar pantalla
+Función de refresh manual mediante pull to refresh
+
+CAPTURA 7: Abrir el archivo app_mobile/src/screens/IoTMonitorScreen.js en VS Code y capturar:
+La función fetchLatestReading() que consulta la API
+El useEffect con el setInterval de 3 segundos (polling)
+La lógica de actualización automática de datos
+
+[INSERTAR CAPTURA 7 AQUÍ]
+
+
+6.2 Datos Mostrados en la App
+
+La pantalla Monitor IoT muestra:
+
+1. Nivel de Estrés: Barra de progreso 0 a 100 con colores (verde/amarillo/rojo)
+2. Sensores Táctiles: 5 botones indicando cuál está presionado
+3. Frecuencia de Toques: Toques totales y toques/minuto
+4. Temperatura: °C en tiempo real
+5. Humedad: % en tiempo real
+6. Presión de Agarre: Valor en kPa y clasificación (bajo/normal/alto)
+7. Recomendación: Mensaje personalizado según nivel de estrés
+8. Timestamp: Última actualización
+
+CAPTURA 8: Ejecutar la app móvil en el celular o emulador, ir a la pantalla Monitor IoT y capturar:
+Nivel de estrés con barra de progreso
+Los 5 sensores táctiles mostrando estados
+Frecuencia de toques actual
+Temperatura y humedad ambiente
+Presión de agarre
+Recomendación personalizada
+Timestamp de última actualización
+
+[INSERTAR CAPTURA 8 AQUÍ]
+
+
+7. Pruebas de Funcionamiento
+
+7.1 Verificación de Conectividad
+
+Pasos realizados:
+1. Arduino conectado a WiFi (LED parpadea 5 veces al conectar)
+2. Backend Flask corriendo en http://192.168.100.69:5000
+3. MongoDB activa con base de datos serenity_app
+4. App móvil conectada a la misma red WiFi
+
+CAPTURA 9: Capturar la terminal donde corre el backend mostrando:
+Servidor Flask iniciado en puerto 5000
+Múltiples peticiones POST desde el Arduino (IP 192.168.100.86)
+Códigos de respuesta exitosos (200/201)
+Datos siendo procesados y guardados
+
+[INSERTAR CAPTURA 9 AQUÍ]
+
+
+7.2 Escenarios de Prueba
+
+Se probaron 3 escenarios diferentes:
+
+Escenario 1: Usuario Tranquilo
+Toques: 0.96/min (muy bajo)
+Presión: 4.31 kPa (normal)
+Ambiente: 23.6°C, 41% humedad (confortable)
+Resultado: Estrés = 15 puntos (bajo)
+Recomendación: Tu nivel de estrés es bajo. Sigue así!
+
+Escenario 2: Usuario Ansioso
+Toques: 25/min (muy alto)
+Presión: 7.5 kPa (alta tensión)
+Ambiente: 32°C, 80% humedad (incómodo)
+Resultado: Estrés = 85 puntos (alto)
+Recomendación: Nivel alto de estrés. Prueba respiración 4 7 8
+
+Escenario 3: Técnica Grounding (Uso Óptimo)
+Toques: 12/min (rango ideal 10 a 20)
+Presión: 5.2 kPa (rango ideal 3 a 6)
+Resultado: Mensaje especial Excelente! Estás usando la técnica grounding correctamente
+
+CAPTURA 10: Realizar las pruebas tocando/apretando el dispositivo y capturar 2 a 3 screenshots de la app mostrando:
+Estado tranquilo: Barra verde, nivel bajo de estrés
+Estado ansioso: Barra roja/amarilla, nivel alto de estrés, recomendación de ejercicio
+Uso óptimo: Mensaje especial de felicitación por usar correctamente la técnica
+
+[INSERTAR CAPTURA 10 AQUÍ]
+
+
+8. Beneficios de la Integración IoT
+
+8.1 Ventajas del Sistema
+
+1. Detección Objetiva: No depende de autoevaluación del usuario
+2. Tiempo Real: Alertas inmediatas cuando se detecta estrés elevado
+3. Datos Históricos: Permite analizar patrones de estrés a lo largo del tiempo
+4. Gamificación: Feedback positivo cuando se usa la técnica grounding correctamente
+5. Recomendaciones Personalizadas: Sugiere ejercicios específicos según el tipo de estrés detectado
+
+8.2 Casos de Uso
+
+Estudiantes: Monitoreo durante sesiones de estudio
+Trabajadores remotos: Detección de burnout en tiempo real
+Terapia: Herramienta complementaria para psicólogos
+Prevención: Identificación temprana de episodios de ansiedad
+
+
+9. Tecnologías Utilizadas
+
+Componente            Tecnología
+Microcontrolador      Arduino Nano 33 IoT (SAMD21, WiFiNINA)
+Lenguaje Arduino      C++ (Arduino IDE)
+Backend               Flask (Python 3.11)
+Base de Datos         MongoDB 6.0
+App Móvil             React Native (Expo 49)
+Comunicación          HTTP/REST, JSON
+Protocolo             WiFi 802.11 b/g/n
+
+
+10. Conclusiones
+
+La integración del dispositivo IoT con el proyecto Serenity permite:
+
+Monitoreo objetivo del estado emocional mediante sensores físicos  
+Comunicación en tiempo real entre hardware y software a través de WiFi  
+Análisis inteligente con algoritmo de detección de estrés multi factor  
+Experiencia de usuario fluida con actualizaciones automáticas cada 3 segundos  
+Almacenamiento persistente de datos históricos para análisis de tendencias  
+Retroalimentación inmediata con recomendaciones personalizadas  
+
+El sistema demuestra una arquitectura escalable y modular, donde el dispositivo IoT funciona de manera autónoma y el flujo de datos está completamente integrado con el ecosistema de la aplicación móvil y el backend.
+
+
+Anexo: Resumen de Capturas Requeridas
+
+Num   Descripción                                              Herramienta              Sección
+1     Código Arduino con configuración WiFi y backend         Arduino IDE / VS Code    3.1
+2     Foto del hardware físico con sensores conectados        Cámara del celular       3.2
+3     Serial Monitor con envío de datos JSON                  Arduino IDE              3.3
+4     Logs del backend recibiendo peticiones POST             Terminal PowerShell      4.1
+5     Función _calculate_stress_level()                       VS Code                  4.2
+6     MongoDB con documentos de iot_sensor_data               MongoDB Compass          5.1
+7     Código IoTMonitorScreen.js con polling                  VS Code                  6.1
+8     App móvil mostrando datos en tiempo real                App en celular/emulador  6.2
+9     Terminal con backend corriendo activo                   Terminal PowerShell      7.1
+10    Diferentes niveles de estrés detectados                 App en celular/emulador  7.2
+
+
+Documento creado para: U3 > E3 > Proyecto Integrador  
+Autor: [Tu Nombre]  
+Fecha: Diciembre 2025

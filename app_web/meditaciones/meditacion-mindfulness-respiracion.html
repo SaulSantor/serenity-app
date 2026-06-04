@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mindfulness de la respiración • Serenity</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/meditaciones.css">
+</head>
+
+<body>
+  <div class="container">
+    <a class="back" href="../dashboard.html#meditaciones"><i class="ri-arrow-left-line"></i> Volver a Meditaciones</a>
+    <section class="hero">
+      <div>
+        <h1>Mindfulness de la respiración</h1>
+        <p style="color:var(--muted); margin-top:6px">Atiende la respiración con curiosidad amable. Entrena la atención
+          y calma tu mente.</p>
+        <div class="meta"><span><i class="ri-time-line"></i> 10 min</span><span><i class="ri-focus-2-line"></i> Atención
+            plena</span></div>
+      </div>
+      <div class="panel">
+        <div class="timer">
+          <div class="time" id="time">10:00</div>
+          <div>
+            <button class="btn btn-primary" id="start"><i class="ri-play-fill"></i> Iniciar</button>
+            <button class="btn btn-ghost" id="pause"><i class="ri-pause-line"></i> Pausa</button>
+            <button class="btn btn-ghost" id="reset"><i class="ri-restart-line"></i> Reiniciar</button>
+          </div>
+        </div>
+        <div class="progress" style="margin-top:12px">
+          <div class="bar" id="bar"></div>
+        </div>
+        <div class="log"
+          style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; color:var(--muted)">
+          <span>Intensidad antes</span>
+          <input id="preMF" type="number" min="0" max="10" value="5"
+            style="width:64px; padding:8px; border-radius:8px; background:transparent; border:1px solid var(--border); color:var(--text)">
+          <span>después</span>
+          <input id="postMF" type="number" min="0" max="10" value="3"
+            style="width:64px; padding:8px; border-radius:8px; background:transparent; border:1px solid var(--border); color:var(--text)">
+          <button class="btn btn-ghost" id="saveMF"><i class="ri-save-3-line"></i> Guardar práctica</button>
+        </div>
+        <div id="recentMF" style="margin-top:8px; color:var(--muted); font-size:12px"></div>
+      </div>
+    </section>
+    <section class="grid">
+      <div class="panel">
+        <h3 style="margin:0 0 10px">Fases</h3>
+        <div class="steps" id="steps"></div>
+      </div>
+      <div class="panel">
+        <h3 style="margin:0 0 10px">Instrucciones</h3>
+        <div id="instruction" style="color:var(--muted); line-height:1.6"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="../js/dashboard-api-utils.js"></script>
+  <script src="../js/meditacion-mindfulness-respiracion.js"></script>
+</body>
+
+</html>

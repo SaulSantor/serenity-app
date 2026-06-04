@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diario emocional • Serenity</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/meditaciones.css">
+  <link rel="stylesheet" href="../css/meditacion-diario-emocional.css">
+</head>
+
+<body>
+  <div class="container">
+    <a class="back" href="../dashboard.html#meditaciones"><i class="ri-arrow-left-line"></i> Volver a Meditaciones</a>
+    <div class="grid">
+      <section class="panel">
+        <h2 style="margin:0 0 10px">Nuevo registro</h2>
+        <div class="row" style="margin-bottom:10px">
+          <span class="label">Fecha y hora</span>
+          <input id="when" type="datetime-local" style="min-width:240px">
+          <span class="label">Emoción principal</span>
+          <select id="emotion">
+            <option>Ansiedad</option>
+            <option>Tristeza</option>
+            <option>Enojo</option>
+            <option>Alegría</option>
+            <option>Culpa</option>
+            <option>Vergüenza</option>
+            <option>Calma</option>
+          </select>
+          <span class="label">Intensidad</span>
+          <input id="intensity" type="number" min="0" max="10" value="5" style="width:80px">
+        </div>
+        <div class="row" style="margin-bottom:10px">
+          <span class="label">Sensaciones corporales</span>
+          <input id="body" placeholder="P.ej. nudo en el estómago, hombros tensos" style="flex:1">
+        </div>
+        <div class="row" style="margin-bottom:10px"><span class="label">Pensamientos</span></div>
+        <textarea id="thoughts"
+          placeholder="¿Qué te estás diciendo? ¿Hay catastrofismo, deberías, lectura de mente?"></textarea>
+        <div class="row" style="margin:10px 0"><span class="label">Situación / Disparador</span></div>
+        <textarea id="trigger" placeholder="¿Qué ocurrió antes de sentirte así?"></textarea>
+        <div class="row" style="margin:10px 0"><span class="label">Acciones útiles</span></div>
+        <textarea id="actions"
+          placeholder="¿Qué harás para cuidarte (respirar, caminar, escribir, hablar con alguien)?"></textarea>
+        <div class="row" style="justify-content:flex-end; margin-top:10px">
+          <button class="btn btn-ghost" id="clear"><i class="ri-eraser-line"></i> Limpiar</button>
+          <button class="btn btn-primary" id="save"><i class="ri-save-3-line"></i> Guardar</button>
+        </div>
+      </section>
+      <aside class="panel">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px">
+          <h2 style="margin:0">Historial</h2>
+          <div class="row"><span class="label">Filtrar</span>
+            <select id="filter">
+              <option value="all">Todas</option>
+              <option value="Ansiedad">Ansiedad</option>
+              <option value="Tristeza">Tristeza</option>
+              <option value="Enojo">Enojo</option>
+              <option value="Alegría">Alegría</option>
+              <option value="Culpa">Culpa</option>
+              <option value="Vergüenza">Vergüenza</option>
+              <option value="Calma">Calma</option>
+            </select>
+          </div>
+        </div>
+        <div id="list" style="margin-top:10px"></div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="../js/dashboard-api-utils.js"></script>
+  <script src="../js/meditacion-diario-emocional.js"></script>
+</body>
+
+</html>

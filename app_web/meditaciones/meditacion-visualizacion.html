@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización - Lugar Seguro | Serenity</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/meditaciones.css">
+    <link rel="stylesheet" href="../css/meditacion-visualizacion.css">
+</head>
+
+<body>
+    <div class="visualization-container">
+        <a href="../dashboard.html#meditaciones" class="back-button">
+            <i class="ri-arrow-left-line"></i> Volver a Meditaciones
+        </a>
+
+        <div class="visualization-header">
+            <span class="technique-tag">
+                <i class="ri-landscape-line"></i> Técnica EMDR y DBT
+            </span>
+            <h1>Lugar Seguro Interior</h1>
+            <p class="subtitle" style="font-size: 1.2rem; color: var(--text-secondary);">
+                Crea tu refugio mental para momentos de alto estrés
+            </p>
+        </div>
+
+        <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--text-primary);">
+            Elige tu escenario preferido
+        </h3>
+
+        <div class="scene-selector">
+            <div class="scene-card" onclick="selectScene('beach')">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400" alt="Playa"
+                    class="scene-image">
+                <div class="scene-info">
+                    <div class="scene-name">Playa tranquila</div>
+                    <div class="scene-description">Arena cálida, olas suaves y brisa marina</div>
+                </div>
+            </div>
+
+            <div class="scene-card" onclick="selectScene('forest')">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400" alt="Bosque"
+                    class="scene-image">
+                <div class="scene-info">
+                    <div class="scene-name">Bosque sereno</div>
+                    <div class="scene-description">Árboles altos, luz filtrada y sonidos naturales</div>
+                </div>
+            </div>
+
+            <div class="scene-card" onclick="selectScene('mountain')">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400" alt="Montaña"
+                    class="scene-image">
+                <div class="scene-info">
+                    <div class="scene-name">Cima de montaña</div>
+                    <div class="scene-description">Vistas amplias, aire puro y paz absoluta</div>
+                </div>
+            </div>
+
+            <div class="scene-card" onclick="selectScene('garden')">
+                <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400" alt="Jardín"
+                    class="scene-image">
+                <div class="scene-info">
+                    <div class="scene-name">Jardín secreto</div>
+                    <div class="scene-description">Flores coloridas, fragancias dulces y privacidad</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-visualization-panel" id="visualizationPanel" style="display: none;">
+            <div class="visualization-scene">
+                <div class="scene-title" id="sceneTitle">Playa tranquila</div>
+
+                <div class="scene-instruction" id="sceneInstruction">
+                    Cierra los ojos y respira profundamente tres veces...
+                </div>
+
+                <div class="sense-icons">
+                    <div class="sense-icon-box" id="senseVision">
+                        <i class="ri-eye-line"></i>
+                        <span>Vista</span>
+                    </div>
+                    <div class="sense-icon-box" id="senseSound">
+                        <i class="ri-volume-up-line"></i>
+                        <span>Sonido</span>
+                    </div>
+                    <div class="sense-icon-box" id="senseTouch">
+                        <i class="ri-hand-line"></i>
+                        <span>Tacto</span>
+                    </div>
+                    <div class="sense-icon-box" id="senseSmell">
+                        <i class="ri-contrast-drop-line"></i>
+                        <span>Olfato</span>
+                    </div>
+                    <div class="sense-icon-box" id="senseFeeling">
+                        <i class="ri-heart-line"></i>
+                        <span>Emoción</span>
+                    </div>
+                </div>
+
+                <div class="progress-dots" id="progressDots">
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="resetVisualization()">
+                        <i class="ri-restart-line"></i> Reiniciar
+                    </button>
+                    <button class="control-btn primary" id="nextBtn" onclick="nextStep()">
+                        Siguiente <i class="ri-arrow-right-line"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits-section">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">
+                Beneficios de la Visualización Guiada
+            </h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-shield-check-line"></i>
+                    </div>
+                    <h3>Recurso de emergencia</h3>
+                    <p>Una vez creado, puedes volver a tu lugar seguro mentalmente en cualquier momento de crisis.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-heart-pulse-line"></i>
+                    </div>
+                    <h3>Reduce activación fisiológica</h3>
+                    <p>La visualización detallada calma el sistema nervioso como si estuvieras realmente ahí.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-brain-line"></i>
+                    </div>
+                    <h3>Usada en EMDR</h3>
+                    <p>Técnica fundamental en terapia EMDR para procesar trauma y regular emociones difíciles.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-refresh-line"></i>
+                    </div>
+                    <h3>Reseteo mental rápido</h3>
+                    <p>Con práctica, puedes acceder a esta calma en solo 30 segundos durante el día.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-bar-chart-line"></i>
+                    </div>
+                    <h3>Efectividad comprobada</h3>
+                    <p>89% de efectividad para reducir ansiedad aguda. Validada en terapia DBT y EMDR.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-palette-line"></i>
+                    </div>
+                    <h3>Personalizable</h3>
+                    <p>Tu lugar seguro es único y puedes modificarlo según tus necesidades emocionales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/dashboard-api-utils.js"></script>
+    <script src="../js/meditacion-visualizacion.js"></script>
+</body>
+
+</html>

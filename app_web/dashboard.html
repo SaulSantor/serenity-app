@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Serenity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard-sections.css">
+    <link rel="stylesheet" href="css/community.css">
+    <!-- Verificación de autenticación (debe ser el primer script) -->
+    <script src="js/auth-check.js"></script>
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-spa"></i>
+                <span>Serenity</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#inicio" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Inicio</span>
+            </a>
+            <a href="#mi-ruta" class="nav-item">
+                <i class="fas fa-route"></i>
+                <span>Mi Ruta</span>
+            </a>
+            <a href="#meditaciones" class="nav-item">
+                <i class="fas fa-music"></i>
+                <span>Meditaciones</span>
+            </a>
+            <a href="#comunidad" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Comunidad</span>
+            </a>
+            <a href="#ayuda" class="nav-item">
+                <i class="fas fa-heart"></i>
+                <span>Ayuda</span>
+            </a>
+            <a href="#configuracion" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Configuración</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-actions">
+            <button class="btn-logout" id="btnLogout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Cerrar sesión</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- SECCIÓN: INICIO -->
+        <section id="inicio" class="spa-section" style="display:block;">
+            <header class="top-bar">
+                <h1>Mi Progreso</h1>
+                <div class="user-info">
+                    <div class="user-stats">
+                        <div class="stat-item">
+                            <i class="ri-calendar-check-line"></i>
+                            <span>Prácticas completadas este mes:</span>
+                            <strong id="monthlyPracticeCount">0</strong>
+                        </div>
+                        <div class="stat-item">
+                            <i class="ri-line-chart-line"></i>
+                            <span>Constancia</span>
+                            <strong id="consistencyRate">0%</strong>
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <img src="https://i.pravatar.cc/150" alt="Usuario">
+                    </div>
+                </div>
+            </header>
+
+            <section class="welcome-section">
+                <h2 id="welcomeMessage">Bienvenido de vuelta</h2>
+                <p>Resumen de tus prácticas para reducir el estrés y fortalecer tu bienestar</p>
+            </section>
+
+            <!-- CARDS GRID -->
+            <div class="cards-grid" id="mainCardsGrid">
+                <!-- Se llenará con JS -->
+            </div>
+
+            <!-- ACTIVIDAD RECIENTE -->
+            <div class="bottom-row">
+                <div class="card card-activity">
+                    <h3>Actividad reciente</h3>
+                    <div class="activity-list" id="activityList">
+                        <!-- Se llenará con JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCESOS RÁPIDOS -->
+            <div class="quick-links">
+                <h3>Accesos rápidos a técnicas</h3>
+                <div class="resources-list" id="quickLinksList">
+                    <!-- Se llenará con JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: MI RUTA -->
+        <section id="mi-ruta" class="spa-section" style="display:none;">
+            <header class="top-bar">
+                <h1>Mi Ruta de Bienestar</h1>
+            </header>
+
+            <!-- FRAMEWORK OVERVIEW -->
+            <div class="framework-overview">
+                <h3><i class="ri-bar-chart-box-line"></i> Tu progreso por áreas</h3>
+                <div class="framework-grid" id="frameworkGrid">
+                    <!-- Se llenará con JS -->
+                </div>
+            </div>
+
+            <!-- PRÁCTICAS ACTIVAS -->
+            <div class="progress-overview">
+                <h3><i class="ri-stack-line"></i> Prácticas en curso</h3>
+                <div class="course-list" id="coursesList">
+                    <!-- Se llenará con JS -->
+                </div>
+            </div>
+
+            <!-- RUTAS RECOMENDADAS -->
+            <div class="recommended-paths">
+                <h3><i class="ri-compass-3-line"></i> Rutas recomendadas</h3>
+                <div class="paths-grid" id="pathsGrid">
+                    <!-- Se llenará con JS -->
+                </div>
+            </div>
+
+            <!-- CATÁLOGO -->
+            <div class="all-courses">
+                <h3><i class="ri-book-open-line"></i> Catálogo completo</h3>
+                <div class="catalog-grid" id="catalogGrid">
+                    <!-- Se llenará con JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: MEDITACIONES -->
+        <section id="meditaciones" class="spa-section" style="display:none;">
+            <header class="top-bar">
+                <h1>Técnicas guiadas</h1>
+            </header>
+
+            <section class="welcome-section">
+                <h2>Guías paso a paso para regularte</h2>
+                <p>Elige una técnica respaldada por la ciencia y sigue las instrucciones</p>
+
+                <!-- FILTROS -->
+                <div class="meditation-filters">
+                    <div class="filter-group">
+                        <label><i class="ri-time-line"></i> Duración:</label>
+                        <button class="filter-btn active" data-duration="all">Todas</button>
+                        <button class="filter-btn" data-duration="5">5 min</button>
+                        <button class="filter-btn" data-duration="10">10 min</button>
+                        <button class="filter-btn" data-duration="15">15+ min</button>
+                    </div>
+                    <div class="filter-group">
+                        <label><i class="ri-focus-2-line"></i> Objetivo:</label>
+                        <button class="filter-btn active" data-goal="all">Todos</button>
+                        <button class="filter-btn" data-goal="ansiedad">Ansiedad</button>
+                        <button class="filter-btn" data-goal="sueño">Sueño</button>
+                        <button class="filter-btn" data-goal="focus">Concentración</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="simulations-grid" id="techniquesGrid">
+                <!-- Se llenará con JS -->
+            </div>
+        </section>
+
+        <!-- SECCIÓN: COMUNIDAD -->
+        <section id="comunidad" class="spa-section" style="display:none;">
+            <header class="top-bar">
+                <h1>Comunidad de apoyo</h1>
+            </header>
+            <!-- El contenido dinámico se cargará aquí por community.js -->
+        </section>
+
+        <!-- SECCIÓN: AYUDA -->
+        <section id="ayuda" class="spa-section" style="display:none;">
+            <header class="top-bar">
+                <h1>Centro de Ayuda</h1>
+            </header>
+
+            <section class="welcome-section">
+                <h2>¿Cómo podemos ayudarte?</h2>
+                <p>Encuentra respuestas rápidas y contacta a nuestro equipo</p>
+            </section>
+
+            <div class="help-options">
+                <div class="card card-help">
+                    <div class="help-icon">
+                        <i class="ri-question-line"></i>
+                    </div>
+                    <h3>Preguntas Frecuentes</h3>
+                    <p>Encuentra respuestas a las preguntas más comunes sobre técnicas y funciones</p>
+                    <button class="btn-primary" id="viewFAQBtn">Ver FAQ</button>
+                </div>
+            </div>
+
+            <!-- FAQ Section (target for 'Ver FAQ') -->
+            <div class="help-section" id="FAQ">
+                <h3><i class="ri-question-answer-line"></i> Preguntas Frecuentes</h3>
+
+                <div class="faq-categories">
+                    <button class="faq-category-btn active" data-category="general">General</button>
+                    <button class="faq-category-btn" data-category="tecnicas">Técnicas</button>
+                    <button class="faq-category-btn" data-category="multimedia">Multimedia</button>
+                    <button class="faq-category-btn" data-category="cuenta">Mi Cuenta</button>
+                    <button class="faq-category-btn" data-category="progreso">Progreso</button>
+                    <button class="faq-category-btn" data-category="comunidad">Comunidad</button>
+                </div>
+
+                <div class="faq-list">
+                    <!-- GENERAL -->
+                    <div class="faq-item" data-category="general">
+                        <div class="faq-question">
+                            <h4>¿Qué funciones ofrece Serenity actualmente?</h4>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Serenity incluye meditación guiada (body-scan, visualización, compasión, etc.),
+                                ejercicios de respiración (4-7-8, cuadrada, profunda), grounding, EFT tapping,
+                                seguimiento de ánimo y estado (mood tracking), diario personal, retos y rutinas,
+                                biblioteca de sonidos, progresos y logros, y una sección de comunidad para compartir y
+                                comentar.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="general">
+                        <div class="faq-question">
+                            <h4>¿Puedo usar la misma cuenta en la app móvil y la web?</h4>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sí. Tu cuenta y datos se sincronizan mediante tu perfil (usuario registrado). Inicia
+                                sesión con el mismo email/usuario en la app móvil y en la web para ver tu progreso y
+                                ajustes compartidos.</p>
+                        </div>
+                    </div>
+
+                    <!-- TÉCNICAS -->
+                    <div class="faq-item" data-category="tecnicas">
+                        <div class="faq-question">
+                            <h4>¿Qué técnicas puedo encontrar y cómo elegirlas?</h4>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>En el catálogo tienes técnicas por objetivo y duración: respiraciones guiadas (4-7-8,
+                                box, profunda), meditaciones (body-scan, visualización, compasión), grounding y EFT.
+                                Elige por objetivo (ansiedad, sueño, concentración) o duración (5/10/15 min) y guarda
+                                tus favoritas para acceso rápido.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="tecnicas">
+                        <div class="faq-question">
+                            <h4>¿Cómo funcionan los ejercicios de respiración?</h4>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Las respiraciones están preconfiguradas en fases (inhala, mantiene, exhala). Puedes
+                                iniciar una sesión desde la galería o desde un acceso rápido, pausar, cambiar tipo de
+                                respiración y elegir un paisaje visual para acompañar la práctica.</p>
+                        </div>
+                    </div>
+
+                    <!-- MULTIMEDIA -->
+                    <div class="faq-item" data-category="multimedia">
+                        <div class="faq-question">
+                            <h4>¿Qué incluye la biblioteca de sonidos y cómo la uso?</h4>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>La biblioteca contiene sonidos de naturaleza, pistas musicales y ambients para
+                                meditación. Puedes navegar por categorías, reproducir, pausar y ajustar volumen. También
+                                puedes marcar pistas favoritas para usarlas durante tus sesiones.</p>
+                        </div>
+                    </div>
+
+                    <!-- CUENTA -->
+                    <div class="faq-item" data-category="cuenta">
+                        <div class="faq-question">
+                            <h4>¿Cómo cambio mi correo o contraseña?</h4>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Ve a <strong>Configuración</strong> → <em>Mis datos</em>. En la sección de seguridad
+                                puedes actualizar tu email o solicitar cambio de contraseña. Para cambios sensibles
+                                puede solicitarse verificación por email.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="cuenta">
+                        <div class="faq-question">
+                            <h4>¿Cómo sincronizo o exporto mis datos (diario, estado de ánimo)?</h4>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Actualmente tus datos se guardan en tu cuenta y se sincronizan entre dispositivos. En
+                                futuras versiones añadiremos opciones de exportación (CSV/JSON). Puedes copiar
+                                manualmente entradas del diario si necesitas respaldarlas hoy.</p>
+                        </div>
+                    </div>
+
+                    <!-- PROGRESO -->
+                    <div class="faq-item" data-category="progreso">
+                        <div class="faq-question">
+                            <h4>¿Cómo funciona el sistema de XP y logros?</h4>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Ganas XP por completar actividades (meditaciones, prácticas de respiración, retos).
+                                Acumular XP te permite subir de nivel y desbloquear logros que se muestran en tu perfil
+                                y en la tabla de la comunidad.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="progreso">
+                        <div class="faq-question">
+                            <h4>¿Qué cuenta como práctica para la constancia?</h4>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Se considera práctica válida completar una meditación, una sesión de respiración, un
+                                grounding o registrar un estado de ánimo/journal. Las prácticas guardadas se reflejan en
+                                tus estadísticas mensuales.</p>
+                        </div>
+                    </div>
+
+                    <!-- COMUNIDAD -->
+                    <div class="faq-item" data-category="comunidad">
+                        <div class="faq-question">
+                            <h4>¿Cómo participo en la comunidad y qué puedo compartir?</h4>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>En la sección <strong>Comunidad</strong> puedes leer publicaciones, comentar y
+                                reaccionar. Comparte experiencias y logros, respeta las normas y evita información
+                                sensible. Si quieres mantener publicaciones privadas, usa tu diario personal en lugar de
+                                la comunidad.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="comunidad">
+                        <div class="faq-question">
+                            <h4>¿Puedo reportar contenido o bloquear usuarios?</h4>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sí. Cada publicación tiene opciones para reportar contenido inapropiado. También puedes
+                                bloquear o silenciar usuarios para no ver sus publicaciones.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: CONFIGURACIÓN -->
+        <section id="configuracion" class="spa-section" style="display:none;">
+            <header class="top-bar">
+                <h1>Configuración</h1>
+            </header>
+
+            <div class="settings-tabs">
+                <button class="tab-btn active" data-settings-tab="details">Mis datos</button>
+                <button class="tab-btn" data-settings-tab="notifications">Notificaciones</button>
+            </div>
+
+            <div class="settings-content">
+                <!-- TAB: MIS DATOS -->
+                <div class="settings-tab-panel active" id="tab-details">
+                    <section class="settings-section">
+                        <h3>Información personal</h3>
+
+                        <div class="settings-row">
+                            <label>Nombre</label>
+                            <div class="input-group">
+                                <input type="text" id="firstName" placeholder="Nombre" class="form-input">
+                                <input type="text" id="lastName" placeholder="Apellido" class="form-input">
+                            </div>
+                        </div>
+
+                        <div class="settings-row">
+                            <label>Correo electrónico</label>
+                            <input type="email" id="userEmail" placeholder="tu@email.com" class="form-input full-width">
+                        </div>
+
+                        <div class="settings-row">
+                            <label>Tu foto</label>
+                            <div class="photo-upload">
+                                <img src="https://i.pravatar.cc/150" alt="Profile" class="profile-photo"
+                                    id="profilePhotoPreview">
+                                <label class="upload-area" id="uploadArea" for="photoInput" tabindex="0">
+                                    <input type="file" id="photoInput" accept=".svg,.png,.jpg,.jpeg,.gif"
+                                        style="position:absolute;left:-9999px;">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p><strong>Arrastra la imagen adentro del cuadro y suelta</strong></p>
+                                    <span>SVG, PNG, JPG o GIF</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-row">
+                            <label>Biografía</label>
+                            <textarea class="form-input" id="userBio" placeholder="Cuéntanos sobre ti..."></textarea>
+                        </div>
+
+                        <div class="settings-actions">
+                            <button class="btn-outline" id="cancelSettings">Cancelar</button>
+                            <button class="btn-primary" id="saveSettings">Guardar cambios</button>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- TAB: NOTIFICACIONES -->
+                <div class="settings-tab-panel" id="tab-notifications" style="display:none;">
+                    <section class="settings-section">
+                        <h3>Notificaciones</h3>
+
+                        <div class="settings-row">
+                            <div class="notification-item">
+                                <div class="notification-info">
+                                    <h4>Recordatorios de práctica</h4>
+                                    <p>Te recordaremos practicar técnicas</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="notifPractice" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-row">
+                            <div class="notification-item">
+                                <div class="notification-info">
+                                    <h4>Actividad de la comunidad</h4>
+                                    <p>Notificaciones sobre comentarios y likes</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="notifCommunity" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-row">
+                            <div class="notification-item">
+                                <div class="notification-info">
+                                    <h4>Logros y metas</h4>
+                                    <p>Celebra tus avances</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="notifAchievements" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="js/dashboard-api-utils.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

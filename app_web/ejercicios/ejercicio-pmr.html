@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relajación Muscular Progresiva | Serenity</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/dashboard-sections.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/ejercicios.css">
+    <link rel="stylesheet" href="../css/ejercicio-pmr.css">
+</head>
+
+<body>
+    <div class="pmr-container">
+        <a href="../dashboard.html#meditaciones" class="back-button">
+            <i class="ri-arrow-left-line"></i> Volver al Dashboard
+        </a>
+
+        <div class="exercise-header">
+            <span class="technique-tag">
+                <i class="ri-body-scan-line"></i> Técnica de Jacobson
+            </span>
+            <h1>Relajación Muscular Progresiva</h1>
+            <p class="subtitle">Libera la tensión acumulada grupo muscular por grupo muscular</p>
+        </div>
+
+        <div class="main-panel">
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+
+            <div class="instruction-card" id="instructionCard">
+                <h2 id="muscleTitle">Prepárate para comenzar</h2>
+                <p id="instruction">Busca un lugar cómodo donde puedas sentarte o recostarte sin interrupciones. Vamos a
+                    trabajar 8 grupos musculares principales.</p>
+                <div class="timer-display" id="timer" style="display: none;">5</div>
+                <span class="phase-indicator" id="phase">Preparación</span>
+            </div>
+
+            <div class="muscle-list" id="muscleList">
+                <div class="muscle-item" data-group="1">
+                    <div class="muscle-checkbox"><i class="ri-close-line"></i></div>
+                    <span>Manos y antebrazos</span>
+                </div>
+                <div class="muscle-item" data-group="2">
+                    <div class="muscle-checkbox"><i class="ri-close-line"></i></div>
+                    <span>Bíceps</span>
+                </div>
+                <div class="muscle-item" data-group="3">
+                    <div class="muscle-checkbox"><i class="ri-close-line"></i></div>
+                    <span>Hombros</span>
+                </div>
+                <div class="muscle-item" data-group="4">
+                    <div class="muscle-checkbox"><i class="ri-close-line"></i></div>
+                    <span>Rostro y cuello</span>
+                </div>
+                <div class="muscle-item" data-group="5">
+                    <div class="muscle-checkbox"><i class="ri-close-line"></i></div>
+                    <span>Pecho y espalda</span>
+                </div>
+                <div class="muscle-item" data-group="6">
+                    <div class="muscle-checkbox"><i class="ri-close-line"></i></div>
+                    <span>Abdomen</span>
+                </div>
+                <div class="muscle-item" data-group="7">
+                    <div class="muscle-checkbox"><i class="ri-close-line"></i></div>
+                    <span>Muslos</span>
+                </div>
+                <div class="muscle-item" data-group="8">
+                    <div class="muscle-checkbox"><i class="ri-close-line"></i></div>
+                    <span>Pantorrillas y pies</span>
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <button class="control-btn" onclick="resetExercise()">
+                    <i class="ri-restart-line"></i> Reiniciar
+                </button>
+                <button class="control-btn primary" id="startBtn" onclick="startExercise()">
+                    <i class="ri-play-fill"></i> Comenzar ejercicio
+                </button>
+            </div>
+        </div>
+
+        <div class="benefits-section">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">
+                Beneficios de la Relajación Muscular Progresiva
+            </h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-heart-pulse-line"></i>
+                    </div>
+                    <h3>Reduce tensión física</h3>
+                    <p>Identificas dónde acumulas tensión y aprendes a liberarla conscientemente, reduciendo dolores
+                        musculares crónicos.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-zzz-line"></i>
+                    </div>
+                    <h3>Mejora el sueño</h3>
+                    <p>Especialmente efectiva antes de dormir. La relajación profunda prepara tu cuerpo para un descanso
+                        reparador.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-mental-health-line"></i>
+                    </div>
+                    <h3>Calma la ansiedad</h3>
+                    <p>Al relajar el cuerpo, envías señales a tu cerebro de que estás seguro, reduciendo la respuesta de
+                        estrés.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-bar-chart-line"></i>
+                    </div>
+                    <h3>Validada científicamente</h3>
+                    <p>Creada por Edmund Jacobson en 1920. Efectividad del 90% para reducir ansiedad generalizada según
+                        estudios.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-time-line"></i>
+                    </div>
+                    <h3>Efectos acumulativos</h3>
+                    <p>Con práctica regular, puedes relajarte cada vez más rápido y profundamente. Los beneficios
+                        aumentan con el tiempo.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-first-aid-kit-line"></i>
+                    </div>
+                    <h3>Útil para dolor crónico</h3>
+                    <p>Usada en tratamiento de fibromialgia, dolores de cabeza tensionales y trastornos psicosomáticos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="completion-overlay" id="completionOverlay">
+        <div class="completion-card">
+            <div class="completion-icon">
+                <i class="ri-checkbox-circle-fill"></i>
+            </div>
+            <h2>¡Excelente trabajo!</h2>
+            <p style="margin: 1rem 0; color: var(--text-secondary);">
+                Has completado la relajación de los 8 grupos musculares principales.
+                Tu cuerpo está más relajado y tu mente más tranquila.
+            </p>
+            <button class="control-btn primary" onclick="closeCompletion()">
+                <i class="ri-arrow-left-line"></i> Volver al dashboard
+            </button>
+        </div>
+    </div>
+
+    <script src="../js/dashboard-api-utils.js"></script>
+    <script src="../js/ejercicio-pmr.js"></script>
+</body>
+
+</html>

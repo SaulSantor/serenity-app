@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Scan - Escaneo Corporal | Serenity</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/meditaciones.css">
+    <link rel="stylesheet" href="../css/meditacion-body-scan.css">
+</head>
+
+<body>
+    <div class="meditation-container">
+        <a href="../dashboard.html#meditaciones" class="back-button">
+            <i class="ri-arrow-left-line"></i> Volver a Meditaciones
+        </a>
+
+        <div class="meditation-header">
+            <span class="technique-tag">
+                <i class="ri-heart-pulse-line"></i> Meditación Mindfulness
+            </span>
+            <h1>Escaneo Corporal Guiado</h1>
+            <p class="subtitle" style="font-size: 1.2rem; color: var(--text-secondary);">
+                Reconecta con tu cuerpo y libera tensión acumulada
+            </p>
+        </div>
+
+        <div class="audio-player-card">
+            <div class="meditation-controls">
+                <div class="body-visualization">
+                    <div class="body-outline">
+                        <div class="body-part head" data-part="head"></div>
+                        <div class="body-part neck" data-part="neck"></div>
+                        <div class="body-part shoulders" data-part="shoulders"></div>
+                        <div class="body-part left-arm" data-part="left-arm"></div>
+                        <div class="body-part right-arm" data-part="right-arm"></div>
+                        <div class="body-part chest" data-part="chest"></div>
+                        <div class="body-part abdomen" data-part="abdomen"></div>
+                        <div class="body-part hips" data-part="hips"></div>
+                        <div class="body-part left-leg" data-part="left-leg"></div>
+                        <div class="body-part right-leg" data-part="right-leg"></div>
+                    </div>
+                </div>
+
+                <div class="timer-display" id="timer">10:00</div>
+                <div class="current-instruction" id="instruction">
+                    Busca una posición cómoda y cierra los ojos. Respira profundamente tres veces.
+                </div>
+
+                <div class="progress-tracker" id="progressTracker">
+                    <div class="progress-step active">Cabeza</div>
+                    <div class="progress-step">Cuello</div>
+                    <div class="progress-step">Hombros</div>
+                    <div class="progress-step">Brazos</div>
+                    <div class="progress-step">Pecho</div>
+                    <div class="progress-step">Abdomen</div>
+                    <div class="progress-step">Caderas</div>
+                    <div class="progress-step">Piernas</div>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="resetMeditation()">
+                        <i class="ri-restart-line"></i> Reiniciar
+                    </button>
+                    <button class="control-btn primary" id="playBtn" onclick="startMeditation()">
+                        <i class="ri-play-fill"></i> Comenzar meditación
+                    </button>
+                    <button class="control-btn" id="pauseBtn" onclick="pauseMeditation()" style="display: none;">
+                        <i class="ri-pause-line"></i> Pausar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits-section">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">
+                Beneficios del Escaneo Corporal
+            </h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-heart-pulse-line"></i>
+                    </div>
+                    <h3>Reduce tensión física</h3>
+                    <p>Identificas dónde acumulas estrés en el cuerpo y aprendes a soltarlo conscientemente.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-mental-health-line"></i>
+                    </div>
+                    <h3>Conexión mente-cuerpo</h3>
+                    <p>Desarrollas conciencia de cómo las emociones se manifiestan físicamente en tu cuerpo.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-zzz-line"></i>
+                    </div>
+                    <h3>Mejora el sueño</h3>
+                    <p>Excelente antes de dormir para calmar el sistema nervioso y preparar el cuerpo para el descanso.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-focus-line"></i>
+                    </div>
+                    <h3>Aumenta mindfulness</h3>
+                    <p>Entrena tu capacidad de observar sin juzgar, base fundamental de la atención plena.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-bar-chart-line"></i>
+                    </div>
+                    <h3>Validado científicamente</h3>
+                    <p>Parte del programa MBSR de Jon Kabat-Zinn. 85% efectividad para reducir ansiedad.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-heart-line"></i>
+                    </div>
+                    <h3>Regula emociones</h3>
+                    <p>Al observar sensaciones sin reaccionar, desarrollas ecuanimidad emocional.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/dashboard-api-utils.js"></script>
+    <script src="../js/meditacion-body-scan.js"></script>
+</body>
+
+</html>

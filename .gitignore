@@ -1,0 +1,29 @@
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# Variables de entorno
+.env
+
+# Node modules
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Expo
+.expo/
+dist/
+
+# Base de datos local
+database/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

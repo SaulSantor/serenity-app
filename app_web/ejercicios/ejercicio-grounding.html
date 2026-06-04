@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grounding 5-4-3-2-1 | Serenity</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/dashboard-sections.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/ejercicios.css">
+    <link rel="stylesheet" href="../css/ejercicio-grounding.css">
+</head>
+
+<body>
+    <div class="grounding-container">
+        <a href="../dashboard.html#meditaciones" class="back-button">
+            <i class="ri-arrow-left-line"></i> Volver al Dashboard
+        </a>
+
+        <div class="exercise-header">
+            <span class="technique-tag">
+                <i class="ri-hand-heart-line"></i> Técnica de Anclaje Sensorial
+            </span>
+            <h1>Grounding 5-4-3-2-1</h1>
+            <p class="subtitle">Vuelve al momento presente usando tus cinco sentidos</p>
+        </div>
+
+        <div class="completion-message" id="completionMessage">
+            <i class="ri-checkbox-circle-line" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <h2>¡Excelente trabajo!</h2>
+            <p>Has completado el ejercicio de Grounding. Tu mente está más presente y tu ansiedad ha disminuido.</p>
+        </div>
+
+        <div class="two-column-grid">
+            <div class="instruction-panel">
+                <h2><i class="ri-list-check"></i> Guía paso a paso</h2>
+
+                <div class="sense-step" id="step1">
+                    <div class="sense-header">
+                        <div class="sense-icon" id="icon1">
+                            <i class="ri-eye-line"></i>
+                        </div>
+                        <div>
+                            <div class="sense-number">5</div>
+                            <div class="sense-title">VISTA</div>
+                        </div>
+                    </div>
+                    <p class="sense-instruction">Nombra 5 cosas que puedes VER a tu alrededor</p>
+                    <div class="input-area" id="inputs1">
+                        <div class="input-tag">1</div>
+                        <div class="input-tag">2</div>
+                        <div class="input-tag">3</div>
+                        <div class="input-tag">4</div>
+                        <div class="input-tag">5</div>
+                    </div>
+                </div>
+
+                <div class="sense-step" id="step2">
+                    <div class="sense-header">
+                        <div class="sense-icon" id="icon2">
+                            <i class="ri-hand-line"></i>
+                        </div>
+                        <div>
+                            <div class="sense-number">4</div>
+                            <div class="sense-title">TACTO</div>
+                        </div>
+                    </div>
+                    <p class="sense-instruction">Nombra 4 cosas que puedes TOCAR</p>
+                    <div class="input-area" id="inputs2">
+                        <div class="input-tag">1</div>
+                        <div class="input-tag">2</div>
+                        <div class="input-tag">3</div>
+                        <div class="input-tag">4</div>
+                    </div>
+                </div>
+
+                <div class="sense-step" id="step3">
+                    <div class="sense-header">
+                        <div class="sense-icon" id="icon3">
+                            <i class="ri-headphone-line"></i>
+                        </div>
+                        <div>
+                            <div class="sense-number">3</div>
+                            <div class="sense-title">OÍDO</div>
+                        </div>
+                    </div>
+                    <p class="sense-instruction">Nombra 3 cosas que puedes ESCUCHAR</p>
+                    <div class="input-area" id="inputs3">
+                        <div class="input-tag">1</div>
+                        <div class="input-tag">2</div>
+                        <div class="input-tag">3</div>
+                    </div>
+                </div>
+
+                <div class="sense-step" id="step4">
+                    <div class="sense-header">
+                        <div class="sense-icon" id="icon4">
+                            <i class="ri-contrast-drop-line"></i>
+                        </div>
+                        <div>
+                            <div class="sense-number">2</div>
+                            <div class="sense-title">OLFATO</div>
+                        </div>
+                    </div>
+                    <p class="sense-instruction">Nombra 2 cosas que puedes OLER</p>
+                    <div class="input-area" id="inputs4">
+                        <div class="input-tag">1</div>
+                        <div class="input-tag">2</div>
+                    </div>
+                </div>
+
+                <div class="sense-step" id="step5">
+                    <div class="sense-header">
+                        <div class="sense-icon" id="icon5">
+                            <i class="ri-cake-line"></i>
+                        </div>
+                        <div>
+                            <div class="sense-number">1</div>
+                            <div class="sense-title">GUSTO</div>
+                        </div>
+                    </div>
+                    <p class="sense-instruction">Nombra 1 cosa que puedes SABOREAR</p>
+                    <div class="input-area" id="inputs5">
+                        <div class="input-tag">1</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-panel">
+                <div class="progress-circle">
+                    <div class="progress-number" id="progressNumber">5</div>
+                    <div class="progress-label" id="progressLabel">Cosas para ver</div>
+                </div>
+                <div class="current-sense" id="currentSense">
+                    Observa tu entorno y nombra 5 cosas que puedas ver
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="resetExercise()">
+                        <i class="ri-restart-line"></i> Reiniciar
+                    </button>
+                    <button class="control-btn primary" id="nextButton" onclick="nextStep()">
+                        Siguiente <i class="ri-arrow-right-line"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; margin: 3rem 0 2rem; font-size: 2rem;">
+            ¿Por qué funciona esta técnica?
+        </h2>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="ri-brain-line"></i>
+                </div>
+                <h3>Interrumpe la rumia</h3>
+                <p>Al enfocarte en tus sentidos, interrumpes el ciclo de pensamientos ansiosos y desconectas del bucle
+                    mental negativo.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="ri-time-line"></i>
+                </div>
+                <h3>Te ancla al presente</h3>
+                <p>La ansiedad vive en el futuro. Esta técnica te trae de vuelta al aquí y ahora, donde puedes sentirte
+                    seguro.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="ri-heart-pulse-line"></i>
+                </div>
+                <h3>Calma el sistema nervioso</h3>
+                <p>Al activar tus sentidos, activas el sistema nervioso parasimpático, que reduce la respuesta de lucha
+                    o huida.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="ri-flashlight-line"></i>
+                </div>
+                <h3>Úsala en crisis de pánico</h3>
+                <p>Es especialmente efectiva durante ataques de pánico, disociación o cuando te sientes desconectado de
+                    la realidad.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="ri-bar-chart-line"></i>
+                </div>
+                <h3>Validada científicamente</h3>
+                <p>Usada en terapia EMDR y tratamiento de TEPT. Efectividad del 88% para reducir ansiedad aguda en
+                    estudios clínicos.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="ri-smartphone-line"></i>
+                </div>
+                <h3>No necesita nada especial</h3>
+                <p>Puedes hacerla en cualquier lugar: en el metro, en una reunión, en casa. Solo necesitas estar
+                    presente.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/dashboard-api-utils.js"></script>
+    <script src="../js/ejercicio-grounding.js"></script>
+</body>
+
+</html>

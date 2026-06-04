@@ -1,0 +1,41 @@
+.meditation-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.back-button { display: inline-flex; align-items: center; gap: 8px; color: var(--primary-color); text-decoration: none; margin-bottom: 2rem; font-weight: 500; transition: gap 0.3s ease; }
+.back-button:hover { gap: 12px; }
+.meditation-header { text-align: center; margin-bottom: 3rem; }
+.meditation-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--text-primary); margin-bottom: 1rem; }
+.technique-tag { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%); color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; margin-bottom: 1rem; }
+.audio-player-card { background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%); border-radius: 24px; padding: 3rem; color: white; margin-bottom: 3rem; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3); }
+.body-visualization { display: flex; justify-content: center; align-items: center; margin: 2rem 0; position: relative; min-height: 400px; }
+.body-outline { position: relative; width: 200px; height: 400px; }
+.body-part { position: absolute; background: rgba(255, 255, 255, 0.2); border: 2px solid rgba(255, 255, 255, 0.4); border-radius: 8px; transition: all 0.5s ease; cursor: pointer; }
+.body-part.active { background: rgba(255, 255, 255, 0.9); border-color: white; box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); animation: pulse-glow 2s infinite; }
+.body-part.completed { background: rgba(72, 187, 120, 0.3); border-color: #48BB78; }
+@keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);} 50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);} }
+.head { top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; border-radius: 50%; }
+.neck { top: 60px; left: 50%; transform: translateX(-50%); width: 40px; height: 30px; }
+.shoulders { top: 85px; left: 50%; transform: translateX(-50%); width: 120px; height: 30px; }
+.chest { top: 115px; left: 50%; transform: translateX(-50%); width: 100px; height: 60px; }
+.abdomen { top: 175px; left: 50%; transform: translateX(-50%); width: 90px; height: 50px; }
+.hips { top: 225px; left: 50%; transform: translateX(-50%); width: 100px; height: 40px; }
+.left-arm { top: 100px; left: 10px; width: 30px; height: 120px; }
+.right-arm { top: 100px; right: 10px; width: 30px; height: 120px; }
+.left-leg { top: 265px; left: 40px; width: 35px; height: 135px; }
+.right-leg { top: 265px; right: 40px; width: 35px; height: 135px; }
+.meditation-controls { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+.timer-display { font-size: 4rem; font-weight: 700; text-align: center; }
+.current-instruction { font-size: 1.3rem; text-align: center; line-height: 1.8; min-height: 100px; display: flex; align-items: center; justify-content: center; }
+.control-buttons { display: flex; gap: 1rem; margin-top: 2rem; }
+.control-btn { padding: 15px 30px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.3); color: white; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+.control-btn:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
+.control-btn.primary { background: white; color: #667EEA; border-color: white; }
+.control-btn.primary:hover { background: #f8f9fa; }
+.progress-tracker { width: 100%; display: flex; justify-content: space-between; margin-top: 2rem; }
+.progress-step { flex: 1; text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.1); margin: 0 5px; border-radius: 8px; font-size: 0.85rem; transition: all 0.3s ease; }
+.progress-step.active { background: rgba(255, 255, 255, 0.3); transform: scale(1.05); }
+.progress-step.completed { background: rgba(72, 187, 120, 0.3); }
+.benefits-section { margin-top: 3rem; }
+.benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.benefit-card { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+.benefit-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.benefit-icon { width: 50px; height: 50px; background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; margin-bottom: 1rem; }
+@media (max-width: 768px) { .meditation-container { padding: 1rem; } .meditation-header h1 { font-size: 2rem; } .audio-player-card { padding: 2rem 1rem; } .timer-display { font-size: 2.5rem; } }

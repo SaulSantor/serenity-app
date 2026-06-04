@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yoga suave • Serenity</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/meditaciones.css">
+  <link rel="stylesheet" href="../css/meditacion-yoga-suave.css">
+</head>
+
+<body>
+  <div class="container">
+    <a class="back" href="../dashboard.html#meditaciones"><i class="ri-arrow-left-line"></i> Volver a Meditaciones</a>
+    <section class="hero">
+      <div class="panel">
+        <div class="video" id="videoBox">
+          <div>
+            <div style="font-weight:600; margin-bottom:6px">Inserta un video (opcional)</div>
+            <div style="display:flex; gap:8px; align-items:center; justify-content:center; flex-wrap:wrap">
+              <input id="yt" placeholder="ID de YouTube (p.ej. dQw4w9WgXcQ)"
+                style="padding:8px 10px; border-radius:8px; background:transparent; border:1px solid var(--border); color:var(--text); width:280px">
+              <button class="btn btn-ghost" id="load"><i class="ri-video-line"></i> Cargar</button>
+            </div>
+          </div>
+        </div>
+        <div class="progress" style="margin-top:12px">
+          <div class="bar" id="bar"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2 style="margin:0 0 6px">Rutina de yoga suave (10 min)</h2>
+        <p style="color:var(--muted); margin:0 0 10px">Secuencia restaurativa para soltar tensión: respira por la nariz,
+          sin dolor.</p>
+        <div class="timer">
+          <div class="time" id="time">10:00</div>
+          <div>
+            <button class="btn btn-primary" id="start"><i class="ri-play-fill"></i> Iniciar</button>
+            <button class="btn btn-ghost" id="pause"><i class="ri-pause-line"></i> Pausa</button>
+            <button class="btn btn-ghost" id="reset"><i class="ri-restart-line"></i> Reiniciar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid panel">
+      <div>
+        <h3 style="margin:0 0 10px">Posturas</h3>
+        <div id="poses"></div>
+      </div>
+      <div>
+        <h3 style="margin:0 0 10px">Indicaciones</h3>
+        <div id="inst" style="color:var(--muted); line-height:1.6"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="../js/dashboard-api-utils.js"></script>
+  <script src="../js/meditacion-yoga-suave.js"></script>
+</body>
+
+</html>

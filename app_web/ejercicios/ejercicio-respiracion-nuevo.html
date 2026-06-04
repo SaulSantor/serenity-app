@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respiración 4-7-8 - Serenity</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="../css/ejercicios.css">
+</head>
+
+<body>
+    <div class="exercise-container">
+        <header class="exercise-header">
+            <a href="../dashboard.html#meditaciones" class="back-btn">
+                <i class="ri-arrow-left-line"></i>
+                Volver al dashboard
+            </a>
+            <div class="header-actions">
+                <button class="action-btn" onclick="window.print()">
+                    <i class="ri-printer-line"></i>
+                    Imprimir
+                </button>
+                <button class="action-btn" onclick="shareExercise()">
+                    <i class="ri-share-line"></i>
+                    Compartir
+                </button>
+            </div>
+        </header>
+
+        <div class="exercise-title-section">
+            <div class="exercise-badge">
+                <i class="ri-heart-pulse-line"></i>
+                Técnica validada científicamente
+            </div>
+            <h1>Respiración 4-7-8</h1>
+            <p class="exercise-subtitle">
+                Técnica desarrollada por el Dr. Andrew Weil para activar tu respuesta de relajación natural
+            </p>
+        </div>
+
+        <div class="practice-stats">
+            <div class="stat-box">
+                <i class="ri-time-line"></i>
+                <div class="stat-value">5 min</div>
+                <div class="stat-label">Duración sugerida</div>
+            </div>
+            <div class="stat-box">
+                <i class="ri-medal-line"></i>
+                <div class="stat-value">3</div>
+                <div class="stat-label">Sesiones completadas</div>
+            </div>
+            <div class="stat-box">
+                <i class="ri-fire-line"></i>
+                <div class="stat-value">5</div>
+                <div class="stat-label">Racha de días</div>
+            </div>
+            <div class="stat-box">
+                <i class="ri-line-chart-line"></i>
+                <div class="stat-value">-23%</div>
+                <div class="stat-label">Reducción de ansiedad</div>
+            </div>
+        </div>
+
+        <div class="two-column-grid">
+            <div class="card">
+                <div class="section-title">
+                    <i class="ri-list-check-2"></i>
+                    <span>Cómo practicar</span>
+                </div>
+
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Posición inicial</h4>
+                            <p>Siéntate cómodamente con la espalda recta. Coloca la punta de la lengua detrás de los
+                                dientes superiores.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Exhala completamente</h4>
+                            <p>Vacía todo el aire de tus pulmones por la boca, haciendo un sonido suave de "whoosh".</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Inhala - 4 segundos</h4>
+                            <p>Cierra tu boca e inhala silenciosamente por la nariz mientras cuentas hasta 4.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Sostén - 7 segundos</h4>
+                            <p>Retén la respiración mientras cuentas hasta 7. Mantén tus hombros relajados.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Exhala - 8 segundos</h4>
+                            <p>Exhala completamente por la boca, haciendo el sonido "whoosh", mientras cuentas hasta 8.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>Repite el ciclo</h4>
+                            <p>Esto completa un ciclo. Repite el proceso 3-4 veces más para un total de 4 respiraciones.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-alert">
+                    <i class="ri-lightbulb-line"></i>
+                    <p><strong>Consejo profesional:</strong> Si sientes mareo, reduce el número de ciclos. Es normal
+                        sentir una sensación de ligereza al principio. Con la práctica, esto desaparece.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section-title">
+                    <i class="ri-emotion-line"></i>
+                    <span>Práctica guiada</span>
+                </div>
+
+                <div id="breathingContainer" class="breathing-container"></div>
+
+                <div class="breathing-controls">
+                    <button class="btn-control btn-start" onclick="startBreathing()">
+                        <i class="ri-play-fill"></i>
+                        Iniciar práctica
+                    </button>
+                    <button class="btn-control btn-stop" onclick="stopBreathing()">
+                        <i class="ri-stop-fill"></i>
+                        Detener
+                    </button>
+                    <button class="btn-control btn-complete" id="completePracticeBtn" style="display:none;"
+                        onclick="completePractice()">
+                        <i class="ri-check-double-line"></i>
+                        Marcar como completado
+                    </button>
+                </div>
+
+                <div id="practiceMessage" style="margin-top: 15px; text-align: center; display: none;"></div>
+
+                <div class="info-alert" style="margin-top: 24px;">
+                    <i class="ri-information-line"></i>
+                    <p>La animación te guiará visualmente. Sigue el círculo: cuando crece, inhala; cuando se mantiene,
+                        sostén; cuando se reduce, exhala.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <i class="ri-video-line"></i>
+                <span>Guía en video con instructor</span>
+            </div>
+
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/gz4G31LGyog?controls=1&modestbranding=1&rel=0"
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope" allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="video-meta">
+                <div class="video-meta-item">
+                    <i class="ri-time-line"></i>
+                    <span>5 minutos</span>
+                </div>
+                <div class="video-meta-item">
+                    <i class="ri-user-voice-line"></i>
+                    <span>Guía con voz profesional</span>
+                </div>
+                <div class="video-meta-item">
+                    <i class="ri-volume-up-line"></i>
+                    <span>Música relajante opcional</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <i class="ri-heart-pulse-line"></i>
+                <span>Beneficios respaldados por la ciencia</span>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-brain-line"></i>
+                    </div>
+                    <h4>Reduce la ansiedad</h4>
+                    <p>Activa tu sistema nervioso parasimpático, reduciendo el cortisol y promoviendo la calma. Estudios
+                        muestran una reducción del 23% en síntomas de ansiedad.</p>
+                    <a href="#" class="research-link">
+                        Ver estudios
+                        <i class="ri-external-link-line"></i>
+                    </a>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-moon-line"></i>
+                    </div>
+                    <h4>Mejora la calidad del sueño</h4>
+                    <p>Ayuda a conciliar el sueño más rápido al ralentizar el ritmo cardíaco. Ideal para practicar antes
+                        de dormir o durante despertares nocturnos.</p>
+                    <a href="#" class="research-link">
+                        Ver estudios
+                        <i class="ri-external-link-line"></i>
+                    </a>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-heartbeat-line"></i>
+                    </div>
+                    <h4>Regula el sistema cardiovascular</h4>
+                    <p>Reduce la presión arterial y estabiliza el ritmo cardíaco. Efectivo para manejar palpitaciones
+                        relacionadas con la ansiedad.</p>
+                    <a href="#" class="research-link">
+                        Ver estudios
+                        <i class="ri-external-link-line"></i>
+                    </a>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-flask-line"></i>
+                    </div>
+                    <h4>Aumenta el oxígeno cerebral</h4>
+                    <p>La retención de la respiración optimiza el intercambio de oxígeno, mejorando la concentración y
+                        claridad mental.</p>
+                    <a href="#" class="research-link">
+                        Ver estudios
+                        <i class="ri-external-link-line"></i>
+                    </a>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-emotion-happy-line"></i>
+                    </div>
+                    <h4>Mejora el control emocional</h4>
+                    <p>Fortalece la capacidad de autorregulación emocional, reduciendo la reactividad ante situaciones
+                        estresantes.</p>
+                    <a href="#" class="research-link">
+                        Ver estudios
+                        <i class="ri-external-link-line"></i>
+                    </a>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="ri-sparkling-line"></i>
+                    </div>
+                    <h4>Fácil y accesible</h4>
+                    <p>No requiere equipo especial. Puedes practicarlo en cualquier lugar: oficina, transporte público,
+                        antes de reuniones importantes.</p>
+                    <a href="#" class="research-link">
+                        Guía rápida
+                        <i class="ri-external-link-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <i class="ri-calendar-check-line"></i>
+                <span>¿Cuándo usar esta técnica?</span>
+            </div>
+
+            <div class="two-column-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <div class="step-item">
+                    <div class="step-content">
+                        <h4><i class="ri-moon-clear-line" style="color: var(--primary-color); margin-right: 8px;"></i>
+                            Antes de dormir</h4>
+                        <p>Practica 4 ciclos en la cama para calmar tu mente y preparar tu cuerpo para el descanso.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-content">
+                        <h4><i class="ri-alarm-warning-line"
+                                style="color: var(--primary-color); margin-right: 8px;"></i> Durante crisis de ansiedad
+                        </h4>
+                        <p>Usa 2-3 ciclos para activar tu respuesta de relajación cuando sientas pánico o ansiedad
+                            intensa.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-content">
+                        <h4><i class="ri-user-voice-line" style="color: var(--primary-color); margin-right: 8px;"></i>
+                            Antes de situaciones estresantes</h4>
+                        <p>Prepárate mentalmente antes de presentaciones, exámenes o conversaciones difíciles.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-content">
+                        <h4><i class="ri-refresh-line" style="color: var(--primary-color); margin-right: 8px;"></i> Como
+                            práctica diaria</h4>
+                        <p>Hazlo 2 veces al día (mañana y noche) para entrenar tu sistema nervioso a largo plazo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/breathing-animation.js"></script>
+    <script src="../js/dashboard-api-utils.js"></script>
+    <script src="../js/ejercicio-respiracion-nuevo.js"></script>
+</body>
+
+</html>
